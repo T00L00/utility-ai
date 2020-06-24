@@ -45,7 +45,6 @@ public class UtilityAIConsideration
     {
         return Mathf.Pow(slope * Mathf.Sin(input + xShift), exponential) + yShift;
     }
-
     public static float CalculateBinary(float input, float slope, float xShift, float yShift)
     {
         if(slope >= 0)

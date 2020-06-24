@@ -222,6 +222,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 870059892}
+  - component: {fileID: 870059893}
   - component: {fileID: 870059891}
   m_Layer: 0
   m_Name: Agent
@@ -243,28 +244,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actions:
-  - name: Test
-    enabled: 0
+  - name: Attack
+    enabled: 1
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     considerations:
-    - name: 
-      enabled: 0
-      considerationInput: {fileID: 0}
-      responseCurve: 1
-      slope: 1
-      exponential: 1
-      xShift: 0
-      yShift: 0
-    interruptable: 0
-    done: 0
-  - name: Test
-    enabled: 0
-    considerations:
-    - name: 
-      enabled: 0
-      considerationInput: {fileID: 0}
+    - name: Current Health
+      enabled: 1
+      considerationInput: {fileID: 7297946070419722651, guid: 7016752b6c8f8c04c9539335d83c9617,
+        type: 3}
       responseCurve: 0
-      slope: 1
-      exponential: 1
+      slope: 0.5
+      exponential: 0
       xShift: 0
       yShift: 0
     interruptable: 0
@@ -283,6 +286,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &870059893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870059890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82852703b281a654d91f7b0517c69f0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

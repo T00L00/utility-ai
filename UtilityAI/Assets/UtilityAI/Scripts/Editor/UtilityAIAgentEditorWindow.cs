@@ -6,7 +6,8 @@ using UnityEditor;
 public class UtilityAIAgentEditorWindow : ExtendedEditorWindow
 {
     public int selectedConsiderationInput = 0;
-
+    private UtilityAIAgent serializedObjectTargetBackup;
+    
     public static void Open(UtilityAIAgent agent)
     {
         UtilityAIAgentEditorWindow window = GetWindow<UtilityAIAgentEditorWindow>("AI Editor");
@@ -15,6 +16,17 @@ public class UtilityAIAgentEditorWindow : ExtendedEditorWindow
 
     private void OnGUI()
     {
+        //If the reference to the serialised object has been lost, recreate it from the backup:
+        if(serializedObject == null && serializedObjectTargetBackup != null)
+        {
+            serializedObject = new SerializedObject(serializedObjectTargetBackup);
+        }
+        //If necessary create a backup of the target object:
+        if(serializedObjectTargetBackup == null)
+        {
+            serializedObjectTargetBackup = (UtilityAIAgent) serializedObject.targetObject;
+        }
+
         currentProperty = serializedObject.FindProperty("actions");
         //Display the Actions available to the agent:
         EditorGUILayout.BeginHorizontal("box");

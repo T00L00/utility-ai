@@ -7,7 +7,7 @@ public class UtilityAIAgent : MonoBehaviour
 {
     public List<UtilityAIAction> actions;
 
-    public UtilityAIAction GetBestAction(List<UtilityAIAction> UtilityAIActions)
+    public UtilityAIAction GetBestAction()
     {
         float topScore = 0.0f;
         List<UtilityAIAction> bestActions = new List<UtilityAIAction>();
@@ -38,9 +38,13 @@ public class UtilityAIAgent : MonoBehaviour
             return bestActions[Random.Range(0, bestActions.Count)];
         }
         //Else return the best action:
-        else
+        else if(bestActions.Count > 0)
         {
             return bestActions[0];
+        }
+        else
+        {
+            return null;
         }
     }
 
