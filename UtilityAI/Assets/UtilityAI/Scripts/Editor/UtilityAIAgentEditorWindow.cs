@@ -69,6 +69,12 @@ public class UtilityAIAgentEditorWindow : ExtendedEditorWindow
         DrawField("name", true);
         EditorGUILayout.EndHorizontal();
         EditorGUILayout.BeginHorizontal("box");
+        DrawField("enabled", true);
+        EditorGUILayout.EndHorizontal();
+        EditorGUILayout.BeginHorizontal("box");
+        DrawField("action", true);
+        EditorGUILayout.EndHorizontal();
+        EditorGUILayout.BeginHorizontal("box");
         DrawField("interruptable", true);
         EditorGUILayout.EndHorizontal();
     }
@@ -77,7 +83,10 @@ public class UtilityAIAgentEditorWindow : ExtendedEditorWindow
         currentProperty = prop;
 
         EditorGUILayout.BeginVertical("box", GUILayout.ExpandWidth(true));
+        EditorGUILayout.BeginHorizontal("box", GUILayout.ExpandWidth(true));
         DrawField("name", true);
+        DrawField("enabled", true);
+        EditorGUILayout.EndHorizontal();
         DisplayConsiderationInputSelection();
         EditorGUILayout.EndVertical();
 

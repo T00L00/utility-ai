@@ -7,10 +7,12 @@ using UnityEngine.Events;
 public class UtilityAIAction
 {
     public string name;
-    public bool enabled;
+    public bool enabled = true;
+    public UnityEvent action;
     public List<UtilityAIConsideration> considerations;
     public bool interruptable = false;
     public bool done = false;
+
 
     public float CalculateScore(MonoBehaviour context)
     {
@@ -59,5 +61,10 @@ public class UtilityAIAction
                 return;
             }
         }
+    }
+
+    public void DoAction()
+    {
+        action.Invoke();
     }
 }
