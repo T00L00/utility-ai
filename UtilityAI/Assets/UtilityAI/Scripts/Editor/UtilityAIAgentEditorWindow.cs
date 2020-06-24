@@ -17,7 +17,7 @@ public class UtilityAIAgentEditorWindow : ExtendedEditorWindow
     {
         currentProperty = serializedObject.FindProperty("actions");
         //Display the Actions available to the agent:
-        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.BeginHorizontal("box");
         EditorGUILayout.BeginVertical("box", GUILayout.MaxWidth(150), GUILayout.ExpandHeight(true));
         EditorGUILayout.LabelField("Actions:", EditorStyles.boldLabel);
         DrawSidebar(currentProperty, 1);
@@ -27,10 +27,10 @@ public class UtilityAIAgentEditorWindow : ExtendedEditorWindow
         EditorGUILayout.EndHorizontal();
         EditorGUILayout.EndVertical();
         //If an action has been selected, display its considerations:
-        EditorGUILayout.BeginVertical("box", GUILayout.ExpandHeight(true));
+        EditorGUILayout.BeginVertical("box", GUILayout.ExpandHeight(true), GUILayout.ExpandWidth(true));
         if(selectedProperty[0] != null)
         {
-            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.BeginHorizontal("box", GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
             EditorGUILayout.BeginVertical("box", GUILayout.MaxWidth(150), GUILayout.ExpandHeight(true));
             DrawSelectedActionProperties(selectedProperty[0]);
             EditorGUILayout.LabelField("Considerations:", EditorStyles.boldLabel);
@@ -41,7 +41,7 @@ public class UtilityAIAgentEditorWindow : ExtendedEditorWindow
             EditorGUILayout.EndHorizontal();
             EditorGUILayout.EndVertical();
             //If a consideration has been selected, and it is a consideration for the currently selected action, display its parameters:
-            EditorGUILayout.BeginVertical("box", GUILayout.ExpandHeight(true));
+            EditorGUILayout.BeginVertical("box");
             if(selectedProperty[1] != null && selectedProperty[1].propertyPath.Contains(selectedProperty[0].propertyPath))
             {
                 DrawSelectedConsiderationProperties(selectedProperty[1]);
@@ -75,15 +75,36 @@ public class UtilityAIAgentEditorWindow : ExtendedEditorWindow
     void DrawSelectedConsiderationProperties(SerializedProperty prop)
     {
         currentProperty = prop;
-        EditorGUILayout.BeginHorizontal("box");
+
+        EditorGUILayout.BeginVertical("box", GUILayout.ExpandWidth(true));
         DrawField("name", true);
-        EditorGUILayout.EndHorizontal();
-        EditorGUILayout.BeginHorizontal("box");
         DisplayConsiderationInputSelection();
+        EditorGUILayout.EndVertical();
+
+        EditorGUILayout.BeginVertical(EditorStyles.helpBox, GUILayout.ExpandWidth(true));
+        EditorGUILayout.BeginVertical(EditorStyles.helpBox, GUILayout.ExpandWidth(true));
+        EditorGUILayout.BeginHorizontal("box", GUILayout.ExpandWidth(true));
+        DrawField("responseCurve", true);
         EditorGUILayout.EndHorizontal();
-        EditorGUILayout.BeginHorizontal("box");
-        DrawField("curve", true);
+
+        EditorGUILayout.BeginVertical("box", GUILayout.ExpandWidth(true));
+        EditorGUILayout.BeginHorizontal("box", GUILayout.MaxWidth(300));
+        DrawField("xShift", true);
+        DrawField("yShift", true);
         EditorGUILayout.EndHorizontal();
+        EditorGUILayout.BeginHorizontal("box", GUILayout.MaxWidth(300));
+        DrawField("slope", true);
+        DrawField("exponential", true);
+        EditorGUILayout.EndHorizontal();
+        EditorGUILayout.EndVertical();
+        EditorGUILayout.EndVertical();
+
+        EditorGUILayout.BeginHorizontal("box", GUILayout.ExpandWidth(true));
+        DrawResponseCurve();
+        EditorGUILayout.EndHorizontal();
+        EditorGUILayout.EndVertical();
+        
+        EditorGUILayout.BeginHorizontal("box", GUILayout.ExpandWidth(true));
         if(GUILayout.Button("Remove Consideration"))
         {   
             SerializedProperty considerations = selectedProperty[0].FindPropertyRelative("considerations");
@@ -99,6 +120,7 @@ public class UtilityAIAgentEditorWindow : ExtendedEditorWindow
                 }
             }
         }
+        EditorGUILayout.EndHorizontal();
     }
 
     void DisplayConsiderationInputSelection()
@@ -152,5 +174,35 @@ public class UtilityAIAgentEditorWindow : ExtendedEditorWindow
     void ChangeConsiderationInput(List<GameObject> considerationInputs, int selection)
     {
         currentProperty.FindPropertyRelative("considerationInput").objectReferenceValue = considerationInputs[selection];
+    }
+
+    void DrawResponseCurve()
+    {
+        //create a rect to hold the graph in.
+        GUIContent rectGUI = new GUIContent("rect");
+        Rect rect = EditorGUILayout.BeginVertical(EditorStyles.helpBox, GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));        
+        //set some constraints on the graph.
+        float yMin = 0; 
+        float yMax = 1;
+        float step = 1 / rect.width;
+
+        Handles.color = Color.black;
+        ResponseCurve curveType = (ResponseCurve) currentProperty.FindPropertyRelative("responseCurve").enumValueIndex;
+        float slope = currentProperty.FindPropertyRelative("slope").floatValue;
+        float exponential = currentProperty.FindPropertyRelative("exponential").floatValue;
+        float xShift = currentProperty.FindPropertyRelative("xShift").floatValue;
+        float yShift = currentProperty.FindPropertyRelative("yShift").floatValue;
+        //get the first position
+        Vector2 prevPos = new Vector2(0, UtilityAIConsideration.CalculateScore(0, curveType, slope, exponential, xShift, yShift));
+        //loop through every point and work out its value.
+        for(float k = 0 + step; k < 1; k += step)
+        {
+            Vector2 pos = new Vector2(k, UtilityAIConsideration.CalculateScore(k, curveType, slope, exponential, xShift, yShift));
+            //draw a line between the previous point and the new one.
+            Handles.DrawLine( new Vector2(rect.xMin + prevPos.x * rect.width, rect.yMax - ((prevPos.y - yMin) / (yMax - yMin)) * rect.height), 
+                                new Vector2(rect.xMin + pos.x * rect.width, rect.yMax - ((pos.y - yMin) / (yMax - yMin)) * rect.height));
+            prevPos = pos;
+        }
+        EditorGUILayout.EndVertical();
     }
 }

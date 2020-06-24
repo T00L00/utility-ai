@@ -16,11 +16,11 @@ public class UtilityAIAction
     {
         float score = 1f;
         //For each of the action's considerations, calculate its score, and combine it with the total score:
-        for(int consideration = 0; consideration < considerations.Count; consideration++)
+        foreach(UtilityAIConsideration consideration in considerations)
         {
-            if(considerations[consideration].enabled)
+            if(consideration.enabled)
             {
-                score = score * considerations[consideration].CalculateScore(context);
+                score = score * UtilityAIConsideration.CalculateScore(consideration.considerationInput.GetInput(context), consideration.responseCurve, consideration.slope, consideration.exponential, consideration.xShift, consideration.yShift);
             }
             //If the score hits zero, there is no chance of it ever changing from 0, so return 0:
             if(score == 0)
