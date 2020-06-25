@@ -19,4 +19,9 @@ public class AI : MonoBehaviour
             print(gameObject.name + " - " + bestAction.name);
         }
     }
+
+    public void Heal(int test1, int test2)
+    {
+        print(test1 + " _ ");
+    }
 }

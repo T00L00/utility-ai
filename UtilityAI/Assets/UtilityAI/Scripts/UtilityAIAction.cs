@@ -22,7 +22,7 @@ public class UtilityAIAction
         {
             if(consideration.enabled)
             {
-                score = score * UtilityAIConsideration.CalculateScore(consideration.considerationInput.GetInput(context), consideration.responseCurve, consideration.slope, consideration.exponential, consideration.xShift, consideration.yShift);
+                score = score * consideration.CalculateScore(consideration.considerationInput.GetInput(context));
             }
             //If the score hits zero, there is no chance of it ever changing from 0, so return 0:
             if(score == 0)
@@ -65,6 +65,6 @@ public class UtilityAIAction
 
     public void DoAction()
     {
-        action.Invoke();
+        //action.Invoke();
     }
 }
