@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
+>
+  <engine:Foldout text="Action:">
+    <engine:Foldout name="delegateEntries" text="Delegate Entries">
+    </engine:Foldout>
+    <engine:Button text="Add new Delegate Entry" name="btnAddNew"/>
+    <engine:Button text="Remove all Delegate Entries" name="btnRemoveAll"/>
+  </engine:Foldout>
+</engine:UXML>

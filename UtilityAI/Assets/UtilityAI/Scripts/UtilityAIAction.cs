@@ -4,14 +4,19 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [System.Serializable]
-public class UtilityAIAction
+public class UtilityAIAction : ScriptableObject
 {
-    public string name;
+    public new string name;
     public bool enabled = true;
-    public UnityEvent action;
+    public ExposedDelegate action;
     public List<UtilityAIConsideration> considerations;
     public bool interruptable = false;
     public bool done = false;
+
+    public UtilityAIAction()
+    {
+        name = "New Utility AI Action";
+    }
 
 
     public float CalculateScore(MonoBehaviour context)
@@ -65,6 +70,6 @@ public class UtilityAIAction
 
     public void DoAction()
     {
-        //action.Invoke();
+        action.Invoke();
     }
 }

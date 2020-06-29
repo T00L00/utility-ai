@@ -1,0 +1,7 @@
+.heading{
+    margin: 5px 0px 10px;
+    font-size: 20px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    color: #4B4B4B;
+}

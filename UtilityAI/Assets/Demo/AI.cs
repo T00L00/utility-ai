@@ -20,7 +20,7 @@ public class AI : MonoBehaviour
         }
     }
 
-    public void Heal(int test1, int test2)
+    public void Heal(float test1)
     {
         print(test1 + " _ ");
     }

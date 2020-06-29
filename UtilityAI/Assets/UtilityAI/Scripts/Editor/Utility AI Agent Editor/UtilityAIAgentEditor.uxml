@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
+>
+  <!-- Utility AI Agent -->
+  <engine:VisualElement class="container">
+    <engine:Label text="Utility AI Agent" class="heading"/>
+  </engine:VisualElement>
+  
+  <!-- Utility AI Actions -->
+  <engine:VisualElement class ="container">
+    <engine:Foldout name ="actionList" text="Actions:"/>
+    <engine:Button text="Add new Action" name="btnAddNew"/>
+    <engine:Button text="Remove all Actions" name="btnRemoveAll"/>
+  </engine:VisualElement>
+  
+</engine:UXML>
