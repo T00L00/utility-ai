@@ -14,6 +14,8 @@ public class DelegateEntryEditor : VisualElement
     ExposedDelegateEditor exposedDelegateEditor;
     DelegateEntry delegateEntry;
 
+    Foldout delegateEntryFoldout;
+
     public DelegateEntryEditor(ExposedDelegateEditor exposedDelegateEditor, DelegateEntry delegateEntry)
     {
         this.exposedDelegateEditor = exposedDelegateEditor;
@@ -26,6 +28,8 @@ public class DelegateEntryEditor : VisualElement
         this.styleSheets.Add(stylesheet);
 
         this.AddToClassList("delegateEntryEditor");
+
+        delegateEntryFoldout = this.Query<Foldout>("delegateEntry");
 
         ObjectField targetGOField = this.Query<ObjectField>("targetGOField").First();
         targetGOField.objectType = typeof(GameObject);
@@ -49,7 +53,7 @@ public class DelegateEntryEditor : VisualElement
                     exposedDelegateEditor.UpdateDelegateEntries();
                 }
             );
-            this.Add(targetComponentField);
+            delegateEntryFoldout.Add(targetComponentField);
             if(delegateEntry.Target != null)
             {
                 Type selectedComponentType = delegateEntry.Target.GetType();
@@ -68,7 +72,7 @@ public class DelegateEntryEditor : VisualElement
                         exposedDelegateEditor.UpdateDelegateEntries();
                     }
                 );
-                this.Add(targetMethodField);
+                delegateEntryFoldout.Add(targetMethodField);
                 if(delegateEntry.Method != null && delegateEntry.Parameters.Length > 0)
                 {
                     Foldout parametersFoldout = new Foldout();
@@ -198,7 +202,7 @@ public class DelegateEntryEditor : VisualElement
                         }
                     }
 
-                    this.Add(parametersFoldout);
+                    delegateEntryFoldout.Add(parametersFoldout);
                 }
             }
         }

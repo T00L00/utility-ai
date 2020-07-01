@@ -49,11 +49,37 @@ public class UtilityAIActionEditor : VisualElement
         );
 
         UpdateAction();
+
+        UpdateConsiderations();
+
+        Button addConsiderationButton = new Button(AddConsideration) { text = "Add new Consideration" };
+        actionContainerFoldout.Add(addConsiderationButton);
     }
 
     public void UpdateAction()
     {
         ExposedDelegateEditor exposedDelegateEditor = new ExposedDelegateEditor(this, action.action);
         actionContainerFoldout.Add(exposedDelegateEditor);
+    }
+
+    public void UpdateConsiderations()
+    {
+        Foldout considerationFoldout = new Foldout();
+        considerationFoldout.text = "Considerations: ";
+        foreach (UtilityAIConsideration consideration in action.considerations)
+        {
+            UtilityAIConsiderationEditor utilityAIConsiderationEditor = new UtilityAIConsiderationEditor(this, consideration);
+            considerationFoldout.Add(utilityAIConsiderationEditor);
+        }
+        actionContainerFoldout.Add(considerationFoldout);
+    }
+
+    private void AddConsideration()
+    {
+        UtilityAIConsideration consideration = ScriptableObject.CreateInstance<UtilityAIConsideration>();
+        action.considerations.Add(consideration);
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+        UpdateConsiderations();
     }
 }

@@ -5,5 +5,10 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
-    
+  <engine:Foldout name="consideration">
+    <engine:TextField name="considerationName" label="Consideration Name: "/>
+    <engine:Toggle name="considerationEnabled" label="Enabled: "/>
+    <editor:ObjectField name ="considerationInput" label="Input: " />
+    <engine:VisualElement name="responseCurve" />
+  </engine:Foldout>
 </engine:UXML>
