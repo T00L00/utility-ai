@@ -1,40 +1,56 @@
 #action{
-    padding-left: 15px;
-    background-color: rgb(169, 169, 169);
-    border-color: rgb(128, 128, 128);
+    background-color: rgb(63, 63, 63);
+    border-color: rgb(40, 40, 40);
     border-width: 2px;
-    border-radius: 5px;
-    margin-bottom: 5px;
+    margin: 0px 0px 0px 0px;
+}
+
+#actionContainer{
+    border-color: rgb(40, 40, 40);
+    border-width: 2px;
 }
 
 .actionFoldout{
-    background-color: rgb(63, 103, 154);
-    border-color: rgb(50, 82, 123);
+    background-color: rgb(175, 70, 0);
+    border-color: rgb(40, 40, 40);
     border-width: 2px;
-    border-radius: 5px;
     -unity-font-style: bold;
     font-size: 15px;
+    margin: 0px 0px 0px 0px;
+}
+
+#considerationsList{
+    background-color: rgb(55, 55, 55);
+    border-color: rgb(40, 40, 40);
+    border-width: 2px;
+    margin: 0px 0px 0px 0px;
 }
 
 .considerationsFoldout{
-    background-color: rgb(51, 138, 1);
-    border-color: rgb(41, 110, 1);
+    background-color: rgb(0, 67, 135);
+    border-color: rgb(40, 40, 40);
     border-width: 2px;
-    border-radius: 5px;
     -unity-font-style: bold;
     font-size: 15px;
+    margin: 0px 0px 0px 0px;
 }
 
 .arrayButtons{
-    top:5px;
+    top:3px;
+}
+
+#btnAddNewMethod{
+    right: 40px;
+}
+
+#btnRemoveAllMethods{
+    right: 0px;
 }
 
 #btnAddNewConsideration{
-    top: 3px;
-    right: 35px;
+    right: 40px;
 }
 
 #btnRemoveAllConsiderations{
-    top: 3px;
-    right: 10px;
+    right: 0px;
 }

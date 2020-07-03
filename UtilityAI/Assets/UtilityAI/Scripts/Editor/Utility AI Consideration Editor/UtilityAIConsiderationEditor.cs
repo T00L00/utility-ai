@@ -38,7 +38,7 @@ public class UtilityAIConsiderationEditor : VisualElement
         deleteButton.clickable.clicked += DeleteConsideration;
 
         considerationContainerFoldout = this.Query<Foldout>("consideration").First();
-        considerationContainerFoldout.text = consideration.name;
+        considerationContainerFoldout.text = consideration.name + ": ";
 
         considerationContainerFoldout.Query<Toggle>().First().AddToClassList("considerationFoldout");
 

@@ -41,7 +41,7 @@ public class UtilityAIActionEditor : VisualElement
 
 
         actionContainerFoldout = this.Query<Foldout>("action").First();
-        actionContainerFoldout.text = action.name;
+        actionContainerFoldout.text = action.name + ": ";
 
         actionContainerFoldout.Query<Toggle>().First().AddToClassList("actionFoldout");
 

@@ -5,11 +5,9 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
-  <engine:Foldout name="responseCurve" text="Response Curve:">
-    <editor:EnumField name="curveType" label="Curve Type: " />
-    <editor:FloatField name ="xShift" label ="X Shift: " />
-    <editor:FloatField name ="yShift" label ="Y Shift: " />
-    <editor:FloatField name ="slope" label ="Slope:" />
-    <editor:FloatField name ="exponential" label ="Exponential: " />
-   </engine:Foldout>
+  <editor:EnumField name="curveType" label="Curve Type: " />
+  <editor:FloatField name ="xShift" label ="X Shift: " />
+  <editor:FloatField name ="yShift" label ="Y Shift: " />
+  <editor:FloatField name ="slope" label ="Slope:" />
+  <editor:FloatField name ="exponential" label ="Exponential: " />
 </engine:UXML>

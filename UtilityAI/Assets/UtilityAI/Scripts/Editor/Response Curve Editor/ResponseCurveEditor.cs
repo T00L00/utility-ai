@@ -88,7 +88,7 @@ public class ResponseCurveEditor : VisualElement
                 height = 300,
             }
         };
-        this.Query<Foldout>("responseCurve").First().Add(box);
+        this.Add(box);
         
         VisualElement meshContainer = new VisualElement() { style = { flexGrow = 1, } };
         box.Add(meshContainer);
