@@ -5,6 +5,9 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
+  <engine:Button name="moveUpButton" text ="▲" class="arrayButtons"/>
+  <engine:Button name="moveDownButton" text ="▼" class="arrayButtons"/>
+  <engine:Button name="deleteButton" text ="✖" class="arrayButtons"/>
   <engine:Foldout name="consideration">
     <engine:TextField name="considerationName" label="Consideration Name: "/>
     <engine:Toggle name="considerationEnabled" label="Enabled: "/>

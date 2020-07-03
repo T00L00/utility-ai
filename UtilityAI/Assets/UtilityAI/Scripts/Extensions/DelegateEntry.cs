@@ -15,7 +15,23 @@ public class DelegateEntry : ScriptableObject
 
     [SerializeField]
     protected SerializableMethodInfo methodInfo;
-    public MethodInfo Method { get { return methodInfo.methodInfo; } set { methodInfo = new SerializableMethodInfo(value); } }
+    public MethodInfo Method {
+        get
+        {
+            if (methodInfo != null)
+            {
+                return methodInfo.methodInfo;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        set 
+        { 
+            methodInfo = new SerializableMethodInfo(value); 
+        } 
+    }
 
     [SerializeField]
     protected SerializableObject[] parameters;

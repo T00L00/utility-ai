@@ -72,6 +72,7 @@ public class ResponseCurveEditor : VisualElement
             e =>
             {
                 responseCurve.exponential = (float)e.newValue;
+                utilityAIConsiderationEditor.UpdateResponseCurve();
             }
         );
 

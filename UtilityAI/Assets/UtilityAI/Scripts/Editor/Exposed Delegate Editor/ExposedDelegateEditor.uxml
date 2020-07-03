@@ -5,10 +5,9 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
-  <engine:Foldout text="Action:">
-    <engine:Foldout name="delegateEntries" text="Delegate Entries">
-    </engine:Foldout>
-    <engine:Button text="Add new Delegate Entry" name="btnAddNew"/>
-    <engine:Button text="Remove all Delegate Entries" name="btnRemoveAll"/>
+  <engine:Button text="✚" name="btnAddNewMethod" class="arrayButtons"/>
+  <engine:Button text="✖" name="btnRemoveAllMethods" class="arrayButtons"/>
+  <engine:Foldout name="delegateEntries" text="Methods:">
+    <engine:VisualElement name="delegateEntriesContainer"/>
   </engine:Foldout>
 </engine:UXML>

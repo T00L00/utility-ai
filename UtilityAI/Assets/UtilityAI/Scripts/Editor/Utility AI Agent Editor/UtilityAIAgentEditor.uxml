@@ -12,9 +12,11 @@
   
   <!-- Utility AI Actions -->
   <engine:VisualElement class ="container">
-    <engine:Foldout name ="actionList" text="Actions:"/>
-    <engine:Button text="Add new Action" name="btnAddNew"/>
-    <engine:Button text="Remove all Actions" name="btnRemoveAll"/>
+    <engine:Button text="✚" name="btnAddNewAction" class="arrayButtons"/>
+    <engine:Button text="✖" name="btnRemoveAll" class="arrayButtons"/>
+    <engine:Foldout name ="actionList" text="Actions:">
+      <engine:VisualElement name="actionsContainer" />
+    </engine:Foldout>
   </engine:VisualElement>
   
 </engine:UXML>

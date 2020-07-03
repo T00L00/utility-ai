@@ -16,6 +16,8 @@ public class UtilityAIAction : ScriptableObject
     public UtilityAIAction()
     {
         name = "New Utility AI Action";
+        action = new ExposedDelegate();
+        considerations = new List<UtilityAIConsideration>();
     }
 
 

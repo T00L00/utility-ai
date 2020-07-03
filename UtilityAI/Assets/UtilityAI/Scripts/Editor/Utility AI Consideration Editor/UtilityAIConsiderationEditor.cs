@@ -25,8 +25,22 @@ public class UtilityAIConsiderationEditor : VisualElement
 
         this.AddToClassList("utilityAIActionEditor");
 
+        Button moveUpButton = this.Query<Button>("moveUpButton").First();
+        moveUpButton.BringToFront();
+        moveUpButton.clickable.clicked += MoveConsiderationUp;
+
+        Button moveDownButton = this.Query<Button>("moveDownButton").First();
+        moveDownButton.BringToFront();
+        moveDownButton.clickable.clicked += MoveConsiderationDown;
+
+        Button deleteButton = this.Query<Button>("deleteButton").First();
+        deleteButton.BringToFront();
+        deleteButton.clickable.clicked += DeleteConsideration;
+
         considerationContainerFoldout = this.Query<Foldout>("consideration").First();
         considerationContainerFoldout.text = consideration.name;
+
+        considerationContainerFoldout.Query<Toggle>().First().AddToClassList("considerationFoldout");
 
         responseCurveContainer = this.Query<VisualElement>("responseCurve").First();
 
@@ -67,5 +81,25 @@ public class UtilityAIConsiderationEditor : VisualElement
         responseCurveContainer.Clear();
         ResponseCurveEditor responseCurveEditor = new ResponseCurveEditor(this, consideration.responseCurve);
         responseCurveContainer.Add(responseCurveEditor);
+    }
+
+    private void MoveConsiderationUp()
+    {
+        int index = utilityAIActionEditor.action.considerations.IndexOf(consideration);
+        utilityAIActionEditor.utilityAIAgentEditor.SwapItemsInCollection(utilityAIActionEditor.action.considerations, index, index - 1);
+    }
+
+    private void MoveConsiderationDown()
+    {
+        int index = utilityAIActionEditor.action.considerations.IndexOf(consideration);
+        utilityAIActionEditor.utilityAIAgentEditor.SwapItemsInCollection(utilityAIActionEditor.action.considerations, index, index + 1);
+    }
+
+    private void DeleteConsideration()
+    {
+        if (EditorUtility.DisplayDialog("Delete Consideration", "Are you sure you want to remove this consideration from the action?", "Delete", "Cancel"))
+        {
+            utilityAIActionEditor.utilityAIAgentEditor.RemoveItemFromCollection(utilityAIActionEditor.action.considerations, consideration);
+        }
     }
 }

@@ -5,7 +5,10 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:Foldout name="delegateEntry" text="Delegate Entry">
-      <editor:ObjectField name="targetGOField" label="Target GO: "/>
-    </engine:Foldout>
+  <engine:Button name="moveUpButton" text ="▲" class="arrayButtons"/>
+  <engine:Button name="moveDownButton" text ="▼" class="arrayButtons"/>
+  <engine:Button name="deleteButton" text ="✖" class="arrayButtons"/>
+  <engine:Foldout name="delegateEntry">
+    <editor:ObjectField name="targetGOField" label="Target GO: "/>
+  </engine:Foldout>
 </engine:UXML>

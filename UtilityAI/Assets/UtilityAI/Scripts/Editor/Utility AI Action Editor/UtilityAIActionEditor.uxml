@@ -5,8 +5,19 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
+  <engine:Button name="moveUpButton" text ="▲" class="arrayButtons"/>
+  <engine:Button name="moveDownButton" text ="▼" class="arrayButtons"/>
+  <engine:Button name="deleteButton" text ="✖" class="arrayButtons"/>
   <engine:Foldout name ="action">
     <engine:TextField name="actionName" label="Action Name:"/>
     <engine:Toggle name="actionEnabled" label="Enabled:"/>
+    <engine:VisualElement name="actionContainer"/>
+    <engine:VisualElement name="considerationListContainer">
+      <engine:Button text="✚" name="btnAddNewConsideration" class="arrayButtons"/>
+      <engine:Button text="✖" name="btnRemoveAllConsiderations" class="arrayButtons"/>
+      <engine:Foldout name="considerationsList" text="Considerations:">
+        <engine:VisualElement name="considerationsContainer"/>
+      </engine:Foldout>
+    </engine:VisualElement>
   </engine:Foldout>
 </engine:UXML>

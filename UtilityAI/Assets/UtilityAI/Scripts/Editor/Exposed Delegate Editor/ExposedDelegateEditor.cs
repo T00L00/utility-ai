@@ -6,10 +6,11 @@ using UnityEditor.UIElements;
 
 public class ExposedDelegateEditor : VisualElement
 {
-    UtilityAIActionEditor utilityAIActionEditor;
-    ExposedDelegate exposedDelegate;
+    public UtilityAIActionEditor utilityAIActionEditor;
+    public ExposedDelegate exposedDelegate;
 
     Foldout delegateEntriesList;
+    VisualElement delegateEntriesContainer;
 
     public ExposedDelegateEditor(UtilityAIActionEditor utilityAIActionEditor, ExposedDelegate exposedDelegate)
     {
@@ -24,21 +25,32 @@ public class ExposedDelegateEditor : VisualElement
 
         this.AddToClassList("exposedDelegateEditor");
 
+        Button btnAddDelegateEntry = this.Query<Button>("btnAddNewMethod").First();
+        btnAddDelegateEntry.BringToFront();
+        btnAddDelegateEntry.clickable.clicked += AddDelegateEntry;
+
+        Button btnRemoveAllDelegateEntries = this.Query<Button>("btnRemoveAllMethods").First();
+        btnRemoveAllDelegateEntries.BringToFront();
+        btnRemoveAllDelegateEntries.clickable.clicked += RemoveAllDelegateEntries;
+
         delegateEntriesList = this.Query<Foldout>("delegateEntries");
+        delegateEntriesList.Query<Toggle>().First().AddToClassList("delegateEntryFoldout");
+
+        delegateEntriesContainer = delegateEntriesList.Query<VisualElement>("delegateEntriesContainer").First();
 
         UpdateDelegateEntries();
-
-        Button btnAddDelegateEntry = this.Query<Button>("btnAddNew").First();
-        btnAddDelegateEntry.clickable.clicked += AddDelegateEntry;
     }
 
     public void UpdateDelegateEntries()
     {
-        delegateEntriesList.Clear();
-        foreach (DelegateEntry delegateEntry in exposedDelegate.delegateEntries)
+        delegateEntriesContainer.Clear();
+        if (exposedDelegate != null)
         {
-            DelegateEntryEditor delegateEntryEditor = new DelegateEntryEditor(this, delegateEntry);
-            delegateEntriesList.Add(delegateEntryEditor);
+            foreach (DelegateEntry delegateEntry in exposedDelegate.delegateEntries)
+            {
+                DelegateEntryEditor delegateEntryEditor = new DelegateEntryEditor(this, delegateEntry);
+                delegateEntriesContainer.Add(delegateEntryEditor);
+            }
         }
     }
 
@@ -49,5 +61,20 @@ public class ExposedDelegateEditor : VisualElement
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
         UpdateDelegateEntries();
+    }
+
+    private void RemoveAllDelegateEntries()
+    {
+        if (EditorUtility.DisplayDialog("Delete All Delegate Entries", "Are you sure you want to delete all of the entries for this delegate?", "Delete All", "Cancel"))
+        {
+            for (int i = exposedDelegate.delegateEntries.Count - 1; i >= 0; i--)
+            {
+                AssetDatabase.RemoveObjectFromAsset(exposedDelegate.delegateEntries[i]);
+                exposedDelegate.delegateEntries.RemoveAt(i);
+            }
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+            UpdateDelegateEntries();
+        }
     }
 }

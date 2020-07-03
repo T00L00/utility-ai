@@ -13,6 +13,7 @@ public class UtilityAIConsideration : ScriptableObject
     public UtilityAIConsideration()
     {
         name = "New Utility AI Consideration";
+        responseCurve = new ResponseCurve(CurveType.Linear, 1, 1, 0, 0);
     }
 
     public float CalculateScore(float input)

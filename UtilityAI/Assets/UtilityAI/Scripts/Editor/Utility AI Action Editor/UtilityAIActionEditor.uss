@@ -1,0 +1,40 @@
+#action{
+    padding-left: 15px;
+    background-color: rgb(169, 169, 169);
+    border-color: rgb(128, 128, 128);
+    border-width: 2px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.actionFoldout{
+    background-color: rgb(63, 103, 154);
+    border-color: rgb(50, 82, 123);
+    border-width: 2px;
+    border-radius: 5px;
+    -unity-font-style: bold;
+    font-size: 15px;
+}
+
+.considerationsFoldout{
+    background-color: rgb(51, 138, 1);
+    border-color: rgb(41, 110, 1);
+    border-width: 2px;
+    border-radius: 5px;
+    -unity-font-style: bold;
+    font-size: 15px;
+}
+
+.arrayButtons{
+    top:5px;
+}
+
+#btnAddNewConsideration{
+    top: 3px;
+    right: 35px;
+}
+
+#btnRemoveAllConsiderations{
+    top: 3px;
+    right: 10px;
+}

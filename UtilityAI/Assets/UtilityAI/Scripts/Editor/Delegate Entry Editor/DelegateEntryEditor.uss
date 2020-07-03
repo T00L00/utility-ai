@@ -1,0 +1,13 @@
+#delegateEntry{
+    padding-left: 15px;
+    margin-bottom: 5px;
+}
+
+.delegateEntryFoldout{
+    background-color: rgb(246, 174, 118);
+    border-color: rgb(241, 134, 50);
+    border-width: 2px;
+    border-radius: 5px;
+    -unity-font-style: bold;
+    font-size: 15px;
+}

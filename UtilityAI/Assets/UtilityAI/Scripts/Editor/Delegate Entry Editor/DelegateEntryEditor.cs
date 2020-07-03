@@ -30,6 +30,38 @@ public class DelegateEntryEditor : VisualElement
         this.AddToClassList("delegateEntryEditor");
 
         delegateEntryFoldout = this.Query<Foldout>("delegateEntry");
+        if(delegateEntry.TargetGO != null)
+        {
+            delegateEntryFoldout.text += delegateEntry.TargetGO.name;
+            if (delegateEntry.Target != null)
+            {
+                delegateEntryFoldout.text += "(" + delegateEntry.Target.GetType() + ") ";
+                if (delegateEntry.Method != null)
+                {
+                    delegateEntryFoldout.text += delegateEntry.Method.Name;
+                }
+            }
+            delegateEntryFoldout.text += ": ";
+        }
+        else
+        {
+            delegateEntryFoldout.text = "New Delegate Entry:";
+        }
+        
+
+        delegateEntryFoldout.Query<Toggle>().First().AddToClassList("delegateEntryFoldout");
+
+        Button moveUpButton = this.Query<Button>("moveUpButton").First();
+        moveUpButton.BringToFront();
+        moveUpButton.clickable.clicked += MoveEntryUp;
+
+        Button moveDownButton = this.Query<Button>("moveDownButton").First();
+        moveDownButton.BringToFront();
+        moveDownButton.clickable.clicked += MoveEntryDown;
+
+        Button deleteButton = this.Query<Button>("deleteButton").First();
+        deleteButton.BringToFront();
+        deleteButton.clickable.clicked += DeleteEntry;
 
         ObjectField targetGOField = this.Query<ObjectField>("targetGOField").First();
         targetGOField.objectType = typeof(GameObject);
@@ -206,8 +238,27 @@ public class DelegateEntryEditor : VisualElement
                 }
             }
         }
-
         //Add parameters for the selected method:
         Foldout parameterFoldout = this.Query<Foldout>("parameters");
+    }
+
+    private void MoveEntryUp()
+    {
+        int index = exposedDelegateEditor.exposedDelegate.delegateEntries.IndexOf(delegateEntry);
+        exposedDelegateEditor.utilityAIActionEditor.utilityAIAgentEditor.SwapItemsInCollection(exposedDelegateEditor.utilityAIActionEditor.action.action.delegateEntries, index, index - 1);
+    }
+
+    private void MoveEntryDown()
+    {
+        int index = exposedDelegateEditor.exposedDelegate.delegateEntries.IndexOf(delegateEntry);
+        exposedDelegateEditor.utilityAIActionEditor.utilityAIAgentEditor.SwapItemsInCollection(exposedDelegateEditor.utilityAIActionEditor.action.action.delegateEntries, index, index + 1);
+    }
+
+    private void DeleteEntry()
+    {
+        if (EditorUtility.DisplayDialog("Delete Delegate Entry", "Are you sure you want to remove this delegate entry from the action?", "Delete", "Cancel"))
+        {
+           exposedDelegateEditor.utilityAIActionEditor.utilityAIAgentEditor.RemoveItemFromCollection(exposedDelegateEditor.utilityAIActionEditor.action.action.delegateEntries, delegateEntry);
+        }
     }
 }
