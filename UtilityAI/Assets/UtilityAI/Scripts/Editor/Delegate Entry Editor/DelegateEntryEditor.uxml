@@ -9,6 +9,5 @@
   <engine:Button name="moveDownButton" text ="▼" class="arrayButtons"/>
   <engine:Button name="deleteButton" text ="✖" class="arrayButtons"/>
   <engine:Foldout name="delegateEntry">
-    <editor:ObjectField name="targetGOField" label="Target GO: "/>
   </engine:Foldout>
 </engine:UXML>

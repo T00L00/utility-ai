@@ -49,8 +49,11 @@ public class UtilityAIConsiderationEditor : VisualElement
         nameField.RegisterCallback<ChangeEvent<string>>(
             e =>
             {
-                consideration.name = (string)e.newValue;
-                considerationContainerFoldout.text = (string)e.newValue;
+                if (e.newValue != "")
+                {
+                    consideration.name = (string)e.newValue;
+                    considerationContainerFoldout.text = (string)e.newValue;
+                }
             }
         );
 

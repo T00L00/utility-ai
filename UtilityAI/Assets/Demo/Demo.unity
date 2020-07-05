@@ -121,7 +121,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &227718303
+--- !u!114 &261748359
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,16 +133,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0beaeb1345004e42aee02239a6e8746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: New Utility AI Action
+  name: Test
   enabled: 1
   action:
     delegateEntries:
-    - {fileID: 284009303}
-    - {fileID: 657857476}
-  considerations: []
+    - {fileID: 525816814}
+  considerations:
+  - {fileID: 1038366413}
   interruptable: 0
   done: 0
---- !u!114 &284009303
+--- !u!1 &453751311
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 453751313}
+  - component: {fileID: 453751312}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &453751312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453751311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4662c875386527a4bba97c00f5ee2b89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionSet: {fileID: 0}
+  actions:
+  - {fileID: 261748359}
+--- !u!4 &453751313
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453751311}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &525816814
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,94 +200,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b82e5f2233733704ab853d3aa86ba57d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetGO: {fileID: 1750531322}
-  target: {fileID: 1750531324}
+  targetGO: {fileID: 453751311}
+  target: {fileID: 453751313}
   methodInfo:
     declaringType:
       typeName: UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       genericTypes: []
-    methodName: set_position
-    parameters:
-    - typeName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      genericTypes: []
+    methodName: get_position
+    parameters: []
     genericTypes: []
     flags: 20
-  parameters:
-  - typeUsed:
-      typeName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      genericTypes: []
-    _intValue: 0
-    _floatValue: 0
-    _boolValue: 0
-    _stringValue: 
-    _vector3Value: {x: 3, y: 4, z: 10}
-    _vector2Value: {x: 0, y: 0}
-    _boundsValue:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0, y: 0, z: 0}
-    _rectValue:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 0
-      height: 0
-    _colorValue: {r: 0, g: 0, b: 0, a: 0}
-    _enumIndex: 0
-    _enumOptions: []
-    _objectValue: {fileID: 0}
---- !u!114 &657857476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b82e5f2233733704ab853d3aa86ba57d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetGO: {fileID: 1750531322}
-  target: {fileID: 1750531324}
-  methodInfo:
-    declaringType:
-      typeName: UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      genericTypes: []
-    methodName: set_eulerAngles
-    parameters:
-    - typeName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      genericTypes: []
-    genericTypes: []
-    flags: 20
-  parameters:
-  - typeUsed:
-      typeName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      genericTypes: []
-    _intValue: 0
-    _floatValue: 0
-    _boolValue: 0
-    _stringValue: 
-    _vector3Value: {x: 30, y: 10, z: 50}
-    _vector2Value: {x: 0, y: 0}
-    _boundsValue:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0, y: 0, z: 0}
-    _rectValue:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 0
-      height: 0
-    _colorValue: {r: 0, g: 0, b: 0, a: 0}
-    _enumIndex: 0
-    _enumOptions: []
-    _objectValue: {fileID: 0}
+  parameters: []
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,7 +387,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1219909272
+--- !u!114 &1038366413
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -426,79 +396,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0beaeb1345004e42aee02239a6e8746, type: 3}
+  m_Script: {fileID: 11500000, guid: ab73f4af0834c8149a8166d65678956d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Test
+  name: New Utility AI Consideration
   enabled: 1
-  action:
-    delegateEntries: []
-  considerations: []
-  interruptable: 0
-  done: 0
---- !u!114 &1560247833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0beaeb1345004e42aee02239a6e8746, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: New Utility AI Action
-  enabled: 1
-  action:
-    delegateEntries: []
-  considerations: []
-  interruptable: 0
-  done: 0
---- !u!1 &1750531322
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1750531324}
-  - component: {fileID: 1750531323}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1750531323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1750531322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4662c875386527a4bba97c00f5ee2b89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actions:
-  - {fileID: 227718303}
-  - {fileID: 1560247833}
-  - {fileID: 1219909272}
---- !u!4 &1750531324
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1750531322}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  considerationInput: {fileID: 0}
+  responseCurve:
+    curveType: 0
+    slope: 1
+    exponential: 1
+    xShift: 0
+    yShift: 0

@@ -5,15 +5,9 @@ using UnityEngine;
 
 public class UtilityAIAgent : MonoBehaviour
 {
-    public List<UtilityAIAction> actions = new List<UtilityAIAction>();
+    public UtilityAIActionSet actionSet;
 
-    private void Start()
-    {
-        foreach(UtilityAIAction action in actions)
-        {
-            action.DoAction();
-        }
-    }
+    public List<UtilityAIAction> actions = new List<UtilityAIAction>();
 
     public UtilityAIAction GetBestAction()
     {

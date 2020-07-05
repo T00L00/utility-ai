@@ -30,6 +30,52 @@ public class UtilityAIAgentEditor : Editor
 
     public override VisualElement CreateInspectorGUI()
     {
+        ObjectField actionSetField = rootElement.Query<ObjectField>("actionSetField").First();
+        actionSetField.objectType = typeof(UtilityAIActionSet);
+        actionSetField.value = utilityAIAgent.actionSet;
+        actionSetField.RegisterCallback<ChangeEvent<UnityEngine.Object>>(
+            e =>
+            {
+                if(e.newValue == null)
+                {
+                    EditorPrefs.SetBool("Derived", false);
+                    rootElement.RemoveFromClassList("Derived");
+                    rootElement.AddToClassList("NotDerived");
+                    utilityAIAgent.actionSet = null;
+                    UpdateActions();
+                }
+                else
+                {
+                    EditorPrefs.SetBool("Derived", true);
+                    rootElement.RemoveFromClassList("NotDerived");
+                    rootElement.AddToClassList("Derived");
+                    utilityAIAgent.actions = UtilityAIActionSet.LoadActionsFromSet((UtilityAIActionSet)e.newValue, utilityAIAgent.gameObject);
+                    utilityAIAgent.actionSet = (UtilityAIActionSet)e.newValue;
+                    UpdateActions();
+                }
+            }
+        );
+
+        if(EditorPrefs.GetBool("Derived"))
+        {
+            if (rootElement.ClassListContains("NotDerived"))
+            {
+                rootElement.RemoveFromClassList("NotDerived");
+            }
+            rootElement.AddToClassList("Derived");
+        }
+        else
+        {
+            if (rootElement.ClassListContains("Derived"))
+            {
+                rootElement.RemoveFromClassList("Derived");
+            }
+            rootElement.AddToClassList("NotDerived");
+        }
+
+        Button actionSetSaveButton = rootElement.Query<Button>("saveActionSetButton").First();
+        actionSetSaveButton.clickable.clicked += SaveActionSet;
+
         actionList = rootElement.Query<Foldout>("actionList").First();
         actionContainer = actionList.Query<VisualElement>("actionsContainer").First();
 
@@ -100,5 +146,10 @@ public class UtilityAIAgentEditor : Editor
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
         UpdateActions();
+    }
+
+    public void SaveActionSet()
+    {
+        UtilityAIActionSet.SaveActionsAsSet(utilityAIAgent.actions, utilityAIAgent.gameObject.name);
     }
 }

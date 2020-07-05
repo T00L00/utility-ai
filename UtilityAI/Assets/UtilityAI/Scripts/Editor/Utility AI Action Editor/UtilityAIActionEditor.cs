@@ -18,7 +18,6 @@ public class UtilityAIActionEditor : VisualElement
     {
         this.utilityAIAgentEditor = utilityAIAgentEditor;
         this.action = action;
-
         VisualTreeAsset visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/UtilityAI/Scripts/Editor/Utility AI Action Editor/UtilityAIActionEditor.uxml");
         visualTree.CloneTree(this);
 
@@ -56,9 +55,12 @@ public class UtilityAIActionEditor : VisualElement
         nameField.RegisterCallback<ChangeEvent<string>>(
             e =>
             {
-                action.name = (string)e.newValue;
-                actionContainerFoldout.text = (string)e.newValue;
-                EditorUtility.SetDirty(action);
+                if (e.newValue != "")
+                {
+                    action.name = (string)e.newValue;
+                    actionContainerFoldout.text = (string)e.newValue;
+                    EditorUtility.SetDirty(action);
+                }
             }
         );
 
@@ -83,7 +85,6 @@ public class UtilityAIActionEditor : VisualElement
         Button btnRemoveAllConsiderations = this.Query<Button>("btnRemoveAllConsiderations").First();
         btnRemoveAllConsiderations.BringToFront();
         btnRemoveAllConsiderations.clickable.clicked += RemoveAllConsiderations;
-
     }
 
     public void UpdateAction()

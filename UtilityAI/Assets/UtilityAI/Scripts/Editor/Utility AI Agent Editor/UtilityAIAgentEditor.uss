@@ -6,8 +6,14 @@
     color: #4B4B4B;
 }
 
-.container{
+.NotDerived{
     background-color: rgb(70, 70, 70);
+    border-color: rgb(40, 40, 40);
+    border-width: 2px;
+}
+
+.Derived{
+    background-color: rgb(135, 0, 75);
     border-color: rgb(40, 40, 40);
     border-width: 2px;
 }
@@ -82,5 +88,10 @@
 .unity-enum-field__text{
     color: rgb(0,0,0);
 }
+
+#saveActionSetButton{
+    color: rgb(0, 0, 0);
+}
+
 
 
