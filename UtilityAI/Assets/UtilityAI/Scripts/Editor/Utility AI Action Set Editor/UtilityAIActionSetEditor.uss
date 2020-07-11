@@ -1,0 +1,91 @@
+.heading{
+    margin: 5px 0px 10px 0px;
+    font-size: 20px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    color: #4B4B4B;
+}
+
+.actionSetContainer{
+    background-color: rgb(120, 0, 135);
+    border-color: rgb(40, 40, 40);
+    border-width: 2px;
+}
+
+#actionList{
+    background-color: rgb(70, 70, 70);
+    border-color: rgb(40, 40, 40);
+    border-width: 2px;
+}
+
+#actionContainer{
+    margin-bottom: 5px;
+}
+
+#considerationListContainer{
+    margin-bottom: 5px;
+}
+
+.actionListFoldout{
+    background-color: rgb(135, 11, 0);
+    border-color: rgb(40, 40, 40);
+    border-width:2px;
+    -unity-font-style: bold;
+    font-size: 15px;
+    margin: 0px 0px 0px 0px;
+}
+
+.unity-text-element{
+    color: rgb(220,220,220);
+}
+
+.arrayButtons{
+    background-color: rgb(59,59,59);
+    border-color: rgb(50, 50, 50);
+    border-width:2px;
+    border-radius: 0px;
+    position:absolute;
+    top: 3px;
+    width: 40px;
+}
+
+#deleteButton{
+    right:0px;
+}
+
+#moveDownButton{
+    right:40px;
+}
+
+#moveUpButton{
+    right:80px;
+}
+
+#btnAddNewAction{
+    margin-top: 0px;
+    right: 40px;
+}
+
+#btnRemoveAll{
+    margin-top: 0px;
+    right:0px;
+}
+
+.unity-object-field-display__label{
+    color: rgb(0,0,0);
+}
+
+.unity-base-popup-field__text{
+    color: rgb(0,0,0);
+}
+
+.unity-enum-field__text{
+    color: rgb(0,0,0);
+}
+
+#saveActionSetButton{
+    color: rgb(0, 0, 0);
+}
+
+
+

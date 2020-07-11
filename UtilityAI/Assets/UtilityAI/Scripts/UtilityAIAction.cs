@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [System.Serializable]
-public class UtilityAIAction : ScriptableObject
+public class UtilityAIAction
 {
-    public new string name;
+    public string name;
     public bool enabled = true;
     public ExposedDelegate action;
     public List<UtilityAIConsideration> considerations;
@@ -20,6 +20,18 @@ public class UtilityAIAction : ScriptableObject
         considerations = new List<UtilityAIConsideration>();
     }
 
+    public UtilityAIAction(UtilityAIAction action)
+    {
+        this.name = action.name;
+        this.enabled = action.enabled;
+        this.action = new ExposedDelegate(action.action);
+        this.considerations = new List<UtilityAIConsideration>();
+        foreach(UtilityAIConsideration consideration in action.considerations)
+        {
+            this.considerations.Add(new UtilityAIConsideration(consideration));
+        }
+    }
+
 
     public float CalculateScore(MonoBehaviour context)
     {
@@ -30,11 +42,11 @@ public class UtilityAIAction : ScriptableObject
             if(consideration.enabled)
             {
                 score = score * consideration.CalculateScore(consideration.considerationInput.GetInput(context));
-            }
-            //If the score hits zero, there is no chance of it ever changing from 0, so return 0:
-            if(score == 0)
-            {
-                return 0;
+                //If the score hits zero, there is no chance of it ever changing from 0, so return 0:
+                if (score == 0)
+                {
+                    return 0;
+                }
             }
         }
         //Apply the Compensation Factor:
@@ -48,11 +60,11 @@ public class UtilityAIAction : ScriptableObject
 
     public void EnableConsideration(string considerationName)
     {
-        for(int consideration = 0; consideration < considerations.Count; consideration++)
+        foreach(UtilityAIConsideration consideration in considerations)
         {
-            if(considerations[consideration].name == considerationName)
+            if(consideration.name == considerationName)
             {
-                considerations[consideration].enabled = true;
+                consideration.enabled = true;
                 return;
             }
         }
@@ -60,11 +72,11 @@ public class UtilityAIAction : ScriptableObject
 
     public void DisableConsideration(string considerationName)
     {
-        for(int consideration = 0; consideration < considerations.Count; consideration++)
+        foreach (UtilityAIConsideration consideration in considerations)
         {
-            if(considerations[consideration].name == considerationName)
+            if(consideration.name == considerationName)
             {
-                considerations[consideration].enabled = false;
+                consideration.enabled = false;
                 return;
             }
         }

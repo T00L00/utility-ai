@@ -56,7 +56,7 @@ public class ExposedDelegateEditor : VisualElement
 
     private void AddDelegateEntry()
     {
-        DelegateEntry delegateEntry = ScriptableObject.CreateInstance<DelegateEntry>();
+        DelegateEntry delegateEntry = new DelegateEntry();
         exposedDelegate.delegateEntries.Add(delegateEntry);
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
@@ -69,7 +69,6 @@ public class ExposedDelegateEditor : VisualElement
         {
             for (int i = exposedDelegate.delegateEntries.Count - 1; i >= 0; i--)
             {
-                AssetDatabase.RemoveObjectFromAsset(exposedDelegate.delegateEntries[i]);
                 exposedDelegate.delegateEntries.RemoveAt(i);
             }
             AssetDatabase.SaveAssets();

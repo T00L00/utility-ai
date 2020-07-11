@@ -15,6 +15,15 @@ public class ResponseCurve
     public float xShift = 0f;
     public float yShift = 0f;
 
+    public ResponseCurve(ResponseCurve responseCurve)
+    {
+        curveType = responseCurve.curveType;
+        slope = responseCurve.slope;
+        exponential = responseCurve.exponential;
+        xShift = responseCurve.xShift;
+        yShift = responseCurve.yShift;
+    }
+
     public ResponseCurve(CurveType newCurveType, float newSlope, float newExponential, float newXShift, float newYShift)
     {
         curveType = newCurveType;

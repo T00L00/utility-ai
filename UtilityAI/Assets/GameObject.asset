@@ -13,12 +13,22 @@ MonoBehaviour:
   m_Name: GameObject
   m_EditorClassIdentifier: 
   actions:
-  - name: Test
+  - name: New Utility AI Action
     enabled: 1
-    methods:
-    - componentName: Transform
-      methodName: get_position
-      parameters: []
+    action:
+      delegateEntries:
+      - targetGO: {fileID: 0}
+        target: {fileID: 0}
+        methodInfo:
+          declaringType:
+            typeName: UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+            genericTypes: []
+          methodName: get_position
+          parameters: []
+          genericTypes: []
+          flags: 20
+        parameters: []
     considerations:
     - name: New Utility AI Consideration
       enabled: 1
@@ -29,3 +39,6 @@ MonoBehaviour:
         exponential: 1
         xShift: 0
         yShift: 0
+    interruptable: 0
+    done: 0
+  inheritingGameObject: {fileID: 0}

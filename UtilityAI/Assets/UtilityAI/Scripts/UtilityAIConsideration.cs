@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class UtilityAIConsideration : ScriptableObject
+public class UtilityAIConsideration
 {
-    public new string name;
+    public string name;
     public bool enabled = true;
     public UtilityAIConsiderationInput considerationInput;
     public ResponseCurve responseCurve;
@@ -14,6 +14,13 @@ public class UtilityAIConsideration : ScriptableObject
     {
         name = "New Utility AI Consideration";
         responseCurve = new ResponseCurve(CurveType.Linear, 1, 1, 0, 0);
+    }
+
+    public UtilityAIConsideration(UtilityAIConsideration consideration)
+    {
+        name = consideration.name;
+        enabled = consideration.enabled;
+        responseCurve = new ResponseCurve(consideration.responseCurve);
     }
 
     public float CalculateScore(float input)

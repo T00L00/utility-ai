@@ -121,97 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &261748359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0beaeb1345004e42aee02239a6e8746, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: Test
-  enabled: 1
-  action:
-    delegateEntries:
-    - {fileID: 525816814}
-  considerations:
-  - {fileID: 1038366413}
-  interruptable: 0
-  done: 0
---- !u!1 &453751311
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 453751313}
-  - component: {fileID: 453751312}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &453751312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 453751311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4662c875386527a4bba97c00f5ee2b89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionSet: {fileID: 0}
-  actions:
-  - {fileID: 261748359}
---- !u!4 &453751313
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 453751311}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &525816814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b82e5f2233733704ab853d3aa86ba57d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetGO: {fileID: 453751311}
-  target: {fileID: 453751313}
-  methodInfo:
-    declaringType:
-      typeName: UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      genericTypes: []
-    methodName: get_position
-    parameters: []
-    genericTypes: []
-    flags: 20
-  parameters: []
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,24 +296,149 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1038366413
+--- !u!1 &1081452573
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1081452574}
+  - component: {fileID: 1081452575}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1081452574
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081452573}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1081452575
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1081452573}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab73f4af0834c8149a8166d65678956d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4662c875386527a4bba97c00f5ee2b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: New Utility AI Consideration
-  enabled: 1
-  considerationInput: {fileID: 0}
-  responseCurve:
-    curveType: 0
-    slope: 1
-    exponential: 1
-    xShift: 0
-    yShift: 0
+  actionSet: {fileID: 11400000, guid: c3544e3dcde760646a7a46e4ede2f003, type: 2}
+  actions:
+  - name: Test Action
+    enabled: 1
+    action:
+      delegateEntries:
+      - targetGO: {fileID: 1081452573}
+        target: {fileID: 1081452574}
+        methodInfo:
+          declaringType:
+            typeName: UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+            genericTypes: []
+          methodName: get_position
+          parameters: []
+          genericTypes: []
+          flags: 20
+        parameters: []
+    considerations:
+    - name: New Utility AI Consideration
+      enabled: 1
+      considerationInput: {fileID: 0}
+      responseCurve:
+        curveType: 0
+        slope: 1
+        exponential: 1
+        xShift: 0
+        yShift: 0
+    interruptable: 0
+    done: 0
+--- !u!1 &1142833991
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1142833993}
+  - component: {fileID: 1142833992}
+  m_Layer: 0
+  m_Name: GameObject (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1142833992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142833991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4662c875386527a4bba97c00f5ee2b89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionSet: {fileID: 11400000, guid: c3544e3dcde760646a7a46e4ede2f003, type: 2}
+  actions:
+  - name: Test Action
+    enabled: 1
+    action:
+      delegateEntries:
+      - targetGO: {fileID: 1081452573}
+        target: {fileID: 1081452574}
+        methodInfo:
+          declaringType:
+            typeName: UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+            genericTypes: []
+          methodName: get_position
+          parameters: []
+          genericTypes: []
+          flags: 20
+        parameters: []
+    considerations:
+    - name: New Utility AI Consideration
+      enabled: 1
+      considerationInput: {fileID: 0}
+      responseCurve:
+        curveType: 0
+        slope: 1
+        exponential: 1
+        xShift: 0
+        yShift: 0
+    interruptable: 0
+    done: 0
+--- !u!4 &1142833993
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142833991}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

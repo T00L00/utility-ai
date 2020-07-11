@@ -3,7 +3,7 @@ using System.Reflection;
 using UnityEngine;
 
 [System.Serializable]
-public class DelegateEntry : ScriptableObject
+public class DelegateEntry
 {
     [SerializeField]
     protected GameObject targetGO;
@@ -36,6 +36,17 @@ public class DelegateEntry : ScriptableObject
     [SerializeField]
     protected SerializableObject[] parameters;
     public SerializableObject[] Parameters { get { return parameters; } set { parameters = value; } }
+
+    public DelegateEntry()
+    {
+    }
+
+    public DelegateEntry(DelegateEntry delegateEntry)
+    {
+        this.Target = delegateEntry.Target;
+        this.Method = delegateEntry.Method;
+        this.Parameters = delegateEntry.Parameters;
+    }
 
     public void SetMethod(Type targetType, string methodName)
     {

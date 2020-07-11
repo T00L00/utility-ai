@@ -7,14 +7,14 @@ using UnityEditor.UIElements;
 public class UtilityAIActionEditor : VisualElement
 {
     public UtilityAIAction action;
-    public UtilityAIAgentEditor utilityAIAgentEditor;
+    public Editor utilityAIAgentEditor;
 
     Foldout actionContainerFoldout;
     VisualElement actionDelegateContainer;
     Foldout considerationsFoldout;
     VisualElement considerationsContainer;
 
-    public UtilityAIActionEditor(UtilityAIAgentEditor utilityAIAgentEditor, UtilityAIAction action)
+    public UtilityAIActionEditor(Editor utilityAIAgentEditor, UtilityAIAction action)
     {
         this.utilityAIAgentEditor = utilityAIAgentEditor;
         this.action = action;
@@ -51,6 +51,7 @@ public class UtilityAIActionEditor : VisualElement
         considerationsContainer = considerationsFoldout.Query<VisualElement>("considerationsContainer").First();
 
         TextField nameField = this.Query<TextField>("actionName").First();
+        
         nameField.value = action.name;
         nameField.RegisterCallback<ChangeEvent<string>>(
             e =>
@@ -58,8 +59,7 @@ public class UtilityAIActionEditor : VisualElement
                 if (e.newValue != "")
                 {
                     action.name = (string)e.newValue;
-                    actionContainerFoldout.text = (string)e.newValue;
-                    EditorUtility.SetDirty(action);
+                    actionContainerFoldout.text = (string)e.newValue + ":";
                 }
             }
         );
@@ -70,7 +70,6 @@ public class UtilityAIActionEditor : VisualElement
             e =>
             {
                 action.enabled = (bool)e.newValue;
-                EditorUtility.SetDirty(action);
             }
         );
 
@@ -108,27 +107,39 @@ public class UtilityAIActionEditor : VisualElement
 
     private void MoveActionUp()
     {
-        int index = utilityAIAgentEditor.utilityAIAgent.actions.IndexOf(action);
-        utilityAIAgentEditor.SwapItemsInCollection(utilityAIAgentEditor.utilityAIAgent.actions, index, index - 1);
+        if (utilityAIAgentEditor.GetType() == typeof(UtilityAIAgentEditor))
+        {
+            UtilityAIAgentEditor editorWindow = (UtilityAIAgentEditor)utilityAIAgentEditor;
+            int index = editorWindow.utilityAIAgent.actions.IndexOf(action);
+            editorWindow.SwapItemsInCollection(editorWindow.utilityAIAgent.actions, index, index - 1);
+        }
     }
 
     private void MoveActionDown()
     {
-        int index = utilityAIAgentEditor.utilityAIAgent.actions.IndexOf(action);
-        utilityAIAgentEditor.SwapItemsInCollection(utilityAIAgentEditor.utilityAIAgent.actions, index, index + 1);
+        if (utilityAIAgentEditor.GetType() == typeof(UtilityAIAgentEditor))
+        {
+            UtilityAIAgentEditor editorWindow = (UtilityAIAgentEditor)utilityAIAgentEditor;
+            int index = editorWindow.utilityAIAgent.actions.IndexOf(action);
+            editorWindow.SwapItemsInCollection(editorWindow.utilityAIAgent.actions, index, index + 1);
+        }
     }
 
     private void DeleteAction()
     {
         if (EditorUtility.DisplayDialog("Delete Action", "Are you sure you want to remove this action from the agent?", "Delete", "Cancel"))
         {
-            utilityAIAgentEditor.RemoveItemFromCollection(utilityAIAgentEditor.utilityAIAgent.actions, action);
+            if (utilityAIAgentEditor.GetType() == typeof(UtilityAIAgentEditor))
+            {
+                UtilityAIAgentEditor editorWindow = (UtilityAIAgentEditor)utilityAIAgentEditor;
+                editorWindow.RemoveItemFromCollection(editorWindow.utilityAIAgent.actions, action);
+            }
         }
     }
 
     private void AddConsideration()
     {
-        UtilityAIConsideration consideration = ScriptableObject.CreateInstance<UtilityAIConsideration>();
+        UtilityAIConsideration consideration = new UtilityAIConsideration();
         action.considerations.Add(consideration);
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
@@ -141,7 +152,6 @@ public class UtilityAIActionEditor : VisualElement
         {
             for (int i = action.considerations.Count - 1; i >= 0; i--)
             {
-                AssetDatabase.RemoveObjectFromAsset(action.considerations[i]);
                 action.considerations.RemoveAt(i);
             }
             AssetDatabase.SaveAssets();

@@ -30,34 +30,36 @@ public class UtilityAIAgentEditor : Editor
 
     public override VisualElement CreateInspectorGUI()
     {
+        actionList = rootElement.Query<Foldout>("actionList").First();
+        actionContainer = actionList.Query<VisualElement>("actionsContainer").First();
+
         ObjectField actionSetField = rootElement.Query<ObjectField>("actionSetField").First();
         actionSetField.objectType = typeof(UtilityAIActionSet);
         actionSetField.value = utilityAIAgent.actionSet;
         actionSetField.RegisterCallback<ChangeEvent<UnityEngine.Object>>(
             e =>
             {
-                if(e.newValue == null)
+                if (e.newValue == null)
                 {
-                    EditorPrefs.SetBool("Derived", false);
                     rootElement.RemoveFromClassList("Derived");
                     rootElement.AddToClassList("NotDerived");
-                    utilityAIAgent.actionSet = null;
+                    utilityAIAgent.MakeActionsSetUnique();
                     UpdateActions();
                 }
                 else
                 {
-                    EditorPrefs.SetBool("Derived", true);
                     rootElement.RemoveFromClassList("NotDerived");
                     rootElement.AddToClassList("Derived");
-                    utilityAIAgent.actions = UtilityAIActionSet.LoadActionsFromSet((UtilityAIActionSet)e.newValue, utilityAIAgent.gameObject);
                     utilityAIAgent.actionSet = (UtilityAIActionSet)e.newValue;
+                    utilityAIAgent.actions = utilityAIAgent.actionSet.actions;
                     UpdateActions();
                 }
             }
         );
 
-        if(EditorPrefs.GetBool("Derived"))
+        if (utilityAIAgent.actionSet != null)
         {
+            utilityAIAgent.actions = utilityAIAgent.actionSet.actions;
             if (rootElement.ClassListContains("NotDerived"))
             {
                 rootElement.RemoveFromClassList("NotDerived");
@@ -75,9 +77,6 @@ public class UtilityAIAgentEditor : Editor
 
         Button actionSetSaveButton = rootElement.Query<Button>("saveActionSetButton").First();
         actionSetSaveButton.clickable.clicked += SaveActionSet;
-
-        actionList = rootElement.Query<Foldout>("actionList").First();
-        actionContainer = actionList.Query<VisualElement>("actionsContainer").First();
 
         actionList.Query<Toggle>().First().AddToClassList("actionListFoldout");
 
@@ -106,7 +105,7 @@ public class UtilityAIAgentEditor : Editor
 
     private void AddAction()
     {
-        UtilityAIAction action = ScriptableObject.CreateInstance<UtilityAIAction>();
+        UtilityAIAction action = new UtilityAIAction();
         utilityAIAgent.actions.Add(action);
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
@@ -119,7 +118,6 @@ public class UtilityAIAgentEditor : Editor
         {
             for (int i = utilityAIAgent.actions.Count - 1; i >= 0; i--)
             {
-                AssetDatabase.RemoveObjectFromAsset(utilityAIAgent.actions[i]);
                 utilityAIAgent.actions.RemoveAt(i);
             }
             AssetDatabase.SaveAssets();
@@ -142,7 +140,6 @@ public class UtilityAIAgentEditor : Editor
     public void RemoveItemFromCollection<T>(List<T> collection, T itemToRemove)
     {
         collection.Remove(itemToRemove);
-        AssetDatabase.RemoveObjectFromAsset(itemToRemove as UnityEngine.Object);
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
         UpdateActions();
@@ -150,6 +147,7 @@ public class UtilityAIAgentEditor : Editor
 
     public void SaveActionSet()
     {
-        UtilityAIActionSet.SaveActionsAsSet(utilityAIAgent.actions, utilityAIAgent.gameObject.name);
+        UtilityAIActionSet.SaveActionsAsSet(utilityAIAgent.actions, utilityAIAgent.gameObject);
+        CreateInspectorGUI();
     }
 }

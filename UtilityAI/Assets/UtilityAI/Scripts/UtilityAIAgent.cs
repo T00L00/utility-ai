@@ -9,6 +9,11 @@ public class UtilityAIAgent : MonoBehaviour
 
     public List<UtilityAIAction> actions = new List<UtilityAIAction>();
 
+    private void Start()
+    {
+        MakeActionsSetUnique();
+    }
+
     public UtilityAIAction GetBestAction()
     {
         float topScore = 0.0f;
@@ -33,17 +38,17 @@ public class UtilityAIAgent : MonoBehaviour
                 }
             }
         }
-
         //If there are multiple current best actions, return a random one:
         if(bestActions.Count > 1)
         {
             return bestActions[Random.Range(0, bestActions.Count)];
         }
-        //Else return the best action:
+        //Else if there is one best action return it:
         else if(bestActions.Count > 0)
         {
             return bestActions[0];
         }
+        //Else return null:
         else
         {
             return null;
@@ -52,11 +57,11 @@ public class UtilityAIAgent : MonoBehaviour
 
     public void EnableAction(string actionName)
     {
-        for(int action = 0; action < actions.Count; action++)
+        foreach(UtilityAIAction action in actions)
         {
-            if(actions[action].name == actionName)
+            if(action.name == actionName)
             {
-                actions[action].enabled = true;
+                action.enabled = true;
                 return;
             }
         }
@@ -64,13 +69,28 @@ public class UtilityAIAgent : MonoBehaviour
 
     public void DisableAction(string actionName)
     {
-        for(int action = 0; action < actions.Count; action++)
-        {
-            if(actions[action].name == actionName)
+        foreach(UtilityAIAction action in actions)
+        { 
+            if(action.name == actionName)
             {
-                actions[action].enabled = false;
+                action.enabled = false;
                 return;
             }
+        }
+    }
+
+    public void MakeActionsSetUnique()
+    {
+        if (actionSet != null)
+        {
+            List<UtilityAIAction> sharedActions = actionSet.actions;
+            List<UtilityAIAction> uniqueActions = new List<UtilityAIAction>();
+            foreach(UtilityAIAction sharedAction in sharedActions)
+            {
+                uniqueActions.Add(new UtilityAIAction(sharedAction));
+            }
+            actions = uniqueActions;
+            actionSet = null;
         }
     }
 }
